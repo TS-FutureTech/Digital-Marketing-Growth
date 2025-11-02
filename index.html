@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Marketing Growth Engine — Complete Workflow Dashboard</title>
+    <link rel="icon" href="data:,">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f4f7fc;
+            --card: #ffffff;
+            --muted: #737c95;
+            --accent-1: #1a1e2f;
+            --accent-2: #2563eb;
+            --accent-3: #8b5cf6;
+            --accent-4: #f43f5e;
+            --accent-5: #059669;
+            --glass: rgba(255,255,255,0.7);
+            --success: var(--accent-5);
+            --radius: 16px;
+            --shadow-lift: 0 16px 40px rgba(22,33,60,0.08);
+            --shadow-card: 0 8px 24px rgba(22,33,60,0.04);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background: radial-gradient(800px 400px at -10% -10%, rgba(37,99,235,0.08), transparent 10%),
+                        radial-gradient(600px 300px at 110% 120%, rgba(139,92,246,0.05), transparent 10%),
+                        var(--bg);
+            color: var(--accent-1);
+            padding: 32px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 24px;
+        }
+
+        /* Header */
+        .dashboard-header {
+            grid-column: 1 / -1;
+            background: linear-gradient(110deg, var(--accent-2), var(--accent-3));
+            color: #fff;
+            padding: 32px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-lift);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.05);
+            z-index: 1;
+        }
+
+        .brand {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .logo {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 24px;
+            box-shadow: inset 0 -10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header-content h1 {
+            font-size: 1.5rem;
+            margin-bottom: 6px;
+        }
+
+        .header-content p {
+            margin: 0;
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        /* Main Board */
+        .main-board {
+            background: var(--glass);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow-card);
+            min-height: 520px;
+        }
+
+        .board-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .board-title {
+            font-size: 1.6rem;
+            margin: 6px 0 16px 0;
+        }
+
+        .board-subtitle {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        /* Phases Grid */
+        .phases-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .phase-card {
+            border-radius: 14px;
+            padding: 16px;
+            background: linear-gradient(180deg, rgba(255,255,255,1), rgba(250,250,252,1));
+            border: 1px solid rgba(15,23,42,0.06);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phase-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lift);
+            background: linear-gradient(180deg, rgba(255,255,255,1), rgba(245,247,250,1));
+        }
+
+        .phase-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .phase-badge {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .badge-1 { background: linear-gradient(135deg, var(--accent-2), #4a8aff); }
+        .badge-2 { background: linear-gradient(135deg, #7c3aed, #a78bfa); }
+        .badge-3 { background: linear-gradient(135deg, var(--accent-3), #be88ff); }
+        .badge-4 { background: linear-gradient(135deg, var(--accent-4), #ff7799); }
+        .badge-5 { background: linear-gradient(135deg, var(--accent-5), #28c48e); }
+
+        .phase-title {
+            margin: 0;
+            font-size: 1.15rem;
+            color: var(--accent-1);
+        }
+
+        .phase-description {
+            margin: 6px 0;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .steps-container {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 10px;
+            background: linear-gradient(180deg, #fff, #fcfcfd);
+            border: 1px solid rgba(10,20,40,0.04);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .step-item:hover {
+            background: #f5f8ff;
+            border-color: rgba(37,99,235,0.1);
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-title {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .step-description {
+            display: block;
+            color: var(--muted);
+            margin-top: 6px;
+            font-size: 0.85rem;
+        }
+
+        .check-button {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            border: 2px solid rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            background: transparent;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+
+        .check-button.checked {
+            background: var(--success);
+            border-color: var(--success);
+            color: #fff;
+            box-shadow: 0 6px 16px rgba(5,150,110,0.25);
+            transform: scale(1.05);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--glass);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.4);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow-card);
+            height: fit-content;
+            position: sticky;
+            top: 32px;
+        }
+
+        .progress-stat {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(10,20,40,0.05);
+        }
+
+        .progress-percent {
+            font-size: 1.5rem;
+            color: var(--accent-2);
+        }
+
+        .progress-bar {
+            height: 14px;
+            background: linear-gradient(90deg, #eef2ff, #f6f7ff);
+            border-radius: 999px;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .progress-fill {
+            display: block;
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-2), var(--accent-3));
+            width: 0;
+            transition: width 0.6s ease;
+        }
+
+        .completed-count {
+            font-weight: 700;
+            margin-top: 8px;
+            font-size: 1.1rem;
+        }
+
+        .insight-box {
+            background: linear-gradient(90deg, #fef7ff, #fce7f3);
+            border: 1px solid rgba(244,63,94,0.2);
+            padding: 16px;
+            border-radius: 12px;
+            margin: 16px 0;
+        }
+
+        .quick-actions {
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(10,20,40,0.05);
+        }
+
+        .action-button {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            border-radius: 12px;
+            background: linear-gradient(90deg, var(--accent-3), var(--accent-2));
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 12px 30px rgba(123,44,191,0.2);
+            transition: transform 0.2s ease;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 35px rgba(123,44,191,0.3);
+        }
+
+        .action-hint {
+            font-size: 0.88rem;
+            color: var(--muted);
+            margin-top: 8px;
+        }
+
+        .tools-section {
+            margin-top: 20px;
+            border-top: 1px solid rgba(10,20,40,0.05);
+            padding-top: 16px;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .tool-item {
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(0,0,0,0.05);
+            font-size: 0.85rem;
+        }
+
+        /* Resources Footer */
+        .resources-footer {
+            grid-column: 1 / -1;
+            margin-top: 24px;
+            padding: 20px;
+            border-radius: 16px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(250,250,252,0.8));
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid rgba(10,20,40,0.03);
+            box-shadow: var(--shadow-card);
+        }
+
+        .resources-list {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .resource-pill {
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: linear-gradient(180deg, #fff, #fafbff);
+            border: 1px solid rgba(10,20,40,0.05);
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--accent-2);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .resource-pill:hover {
+            box-shadow: 0 4px 12px rgba(37,99,235,0.1);
+            background: #eef2ff;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lift);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--muted);
+        }
+
+        .prompt-section {
+            margin-bottom: 20px;
+        }
+
+        .execution-steps {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .execution-steps ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .execution-steps li {
+            margin-bottom: 8px;
+        }
+
+        .action-prompt {
+            background: #e0f2fe;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-2);
+            margin: 15px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 1080px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 0 16px;
+            }
+            .phases-grid {
+                grid-template-columns: 1fr;
+            }
+            body {
+                padding: 20px;
+            }
+            .dashboard-header {
+                flex-direction: column;
+                gap: 16px;
+                align-items: flex-start;
+            }
+            .sidebar {
+                position: static;
+                top: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="dashboard-header">
+            <div class="brand">
+                <div class="logo">🚀</div>
+                <div class="header-content">
+                    <h1>Digital Marketing Growth Engine</h1>
+                    <p>Complete workflow to scale your business through data-driven digital marketing</p>
+                </div>
+            </div>
+            <div style="text-align:right; z-index:2;">
+                <div style="font-size:1rem;font-weight:700;opacity:0.95">90-Day Marketing Transformation</div>
+                <div style="margin-top:4px;font-size:0.9rem;color:rgba(255,255,255,0.9)">Follow the phases: Strategy → Execution → Optimization → Scaling</div>
+            </div>
+        </header>
+
+        <main class="main-board">
+            <div class="board-header">
+                <div>
+                    <div class="board-subtitle">Actionable digital marketing steps organized by phase — execute systematically for growth</div>
+                    <h2 class="board-title">Digital Marketing Growth Framework</h2>
+                </div>
+                <div style="text-align:right">
+                    <small style="color:var(--muted)">Progress saves automatically in your browser</small>
+                </div>
+            </div>
+
+            <section class="phases-grid">
+                <!-- Phase 1 -->
+                <article class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-badge badge-1">🎯</div>
+                        <div>
+                            <h3 class="phase-title">Phase 1 — Strategy & Foundation</h3>
+                            <p class="phase-description">Define goals, audience, and competitive positioning</p>
+                        </div>
+                    </div>
+
+                    <div class="steps-container">
+                        <div class="step-item" data-id="p1-s1">
+                            <button class="check-button" aria-pressed="false" title="Mark done" data-key="p1-s1">✓</button>
+                            <div class="step-content" onclick="showPrompt('p1-s1')">
+                                <h4 class="step-title">Define Business Goals & KPIs</h4>
+                                <small class="step-description">Set SMART goals, identify key metrics, and establish baseline measurements</small>
+                            </div>
+                        </div>
+
+                        <div class="step-item" data-id="p1-s2">
+                            <button class="check-button" aria-pressed="false" data-key="p1-s2">✓</button>
+                            <div class="step-content" onclick="showPrompt('p1-s2')">
+                                <h4 class="step-title">Create Buyer Personas</h4>
+                                <small class="step-description">Develop detailed profiles of ideal customers, their pain points, and buying journey</small>
+                            </div>
+                        </div>
+
+                        <div class="step-item" data-id="p1-s3">
+                            <button class="check-button" aria-pressed="false" data-key="p1-s3">✓</button>
+                            <div class="step-content" onclick="showPrompt('p1-s3')">
+                                <h4 class="step-title">Competitive Analysis</h4>
+                                <small class="step-description">Analyze competitors' strategies, strengths, weaknesses, and market positioning</small>
+                            </div>
+                        </div>
+
+                        <div class="step-item" data-id="p1-s4">
+                            <button class="check-button" aria-pressed="false" data-key="p1-s4">✓</button>
+                            <div class="step-content" onclick="showPrompt('p1-s4')">
+                                <h4 class="step-title">Channel Strategy & Budget</h4>
+                                <small class="step-description">Select marketing channels, allocate budget, and create testing plan</small>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Phase 2 -->
+                <article class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-badge badge-2">🌐</div>
+                        <div>
+                            <h3 class="phase-title">Phase 2 — Digital Presence & Infrastructure</h3>
+                            <p class="phase-description">Build foundational digital assets and tracking systems</p>
+                        </div>
+                    </div>
+
+                    <div class="steps-container">
+                        <div class="step-item" data-id="p2-s1">
+                            <button class="check-button" aria-pressed="false" data-key="p2-s1">✓</button>
+                            <div class="step-content" onclick="showPrompt('p2-s1')">
+                                <h4 class="step-title">Website & Landing Page Optimization</h4>
+                                <small class="step-description">Audit and improve website UX, speed, and conversion paths</small>
+                            </div>
+                        </div>
+
+                        <div class="step-item" data-id="p2-s2">
+                            <button class="check-button" aria-pressed="false" data-key="p2-s2">✓</button>
+                            <div class="step-content" onclick="showPrompt('p2-s2')">
+                                <h4 class="step-title">SEO Foundation & Keyword Strategy</h4>
+                                <small class="step-description">Conduct keyword research and implement on-page SEO best practices</small>
+                            </div>
+                        </div>
+
+                        <div class="step-item" data-id="p2-s3">
+                            <button class="check-button" aria-pressed="false" data-key="p2-s3">✓</button>
+                            <div class="step-content" onclick="showPrompt('p2-s3')">
+                                <h4 class="step-title">Analytics & Tracking Implementation</h4>
+                                <small class="step-description">Set up Google Analytics, Google Tag Manager, and conversion tracking</small>
+                            </div>
+                        </div>
+
+                        <div class="step-item" data-id="p2-s4">
+                            <button class="check-button" aria-pressed="false" data-key="p2-s4">✓</button>
+                            <div class="step-content" onclick="showPrompt('p2-s4')">
+                                <h4 class="step-title">Content Strategy & Calendar</h4>
+                                <small class="step-description">Develop content pillars, create editorial calendar, and plan distribution</small>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Phase 3 -->
+                <article class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-badge badge-3">📈</div>
+                        <div>
+                            <h3 class="phase-title">Phase 3 — Acquisition & Activation</h3>
+                            <p class="phase-description">Drive targeted traffic and convert visitors to leads/customers</p>
+                        </div>
+                    </div>
+
+                    <div class="steps-container">
+                        <div class="step-item" data-id="p3-s1">
+                            <button class="check-button" aria-pressed="false" data-key="p3-s1">✓</button>
+                            <div class="step-content" onclick="showPrompt('p3-s1')">
+                                <h4 class="step-title">Paid Advertising Campaigns</h4>
+                                <small class="step-description">Launch and optimize Google Ads, social media ads, and retargeting</small>
+                            </div>
+                        </div>
+
+                        <div class="step-item" data-id="p3-s2">
+                            <button class="check-button" aria-pressed="false" data-key="p3-s2">✓</button>
+                            <div class="step-content" onclick="showPrompt('p3-s2')">
+                                <h4 class="step-title">Content Marketing Execution</h4>
+                                <small class="step-description">Create and distribute blog posts, videos, and other content assets</small>
+                            </div>
+                        </div>
+
+                        <div class="step-item" data-id="p3-s3">
+                            <button class="check-button" aria-pressed="false" data-key="p3-s3">✓</button>
+                            <div class="step-content" onclick="showPrompt('p3-s3')">
+                                <h4 class="step-title">Email Marketing & Lead Nurturing</h4>
+                                <small class="step-description">Build email lists and create automated nurture sequences</small>
+                            </div>
+                        </div>
+
+                        <div class="step-item" data-id="p3-s4">
+                            <button class="check-button" aria-pressed="false" data-key="p3-s4">✓</button>
+                            <div class="step-content" onclick="showPrompt('p3-s4')">
+                                <h4 class="step-title">Social Media Marketing</h4>
+                                <small class="step-description">Engage audience and drive traffic through strategic social media presence</small>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Phase 4 -->
+                <article class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-badge badge-4">⚙️</div>
+                        <div>
+                            <h3 class="phase-title">Phase 4 — Optimization & Conversion</h3>
+                            <p class="phase-description">Improve performance and maximize conversion rates</p>
+                        </div>
+                    </div>
+
+                    <div class="steps-container">
+                        <div class="step-item" data-id="p4-s1">
+                            <button class="check-button" aria-pressed="false" data-key="p4-s1">✓</button>
+                            <div class="step-content" onclick="showPrompt('p4-s1')">
+                                <h4 class="step-title">Conversion Rate Optimization</h4>
+                                <small class="step-description">Test and optimize landing pages, CTAs, and user flows</small>
+                            </div>
+                        </div>
+
+                        <div class="step-item" data-id="p4-s2">
+                            <button class="check-button" aria-pressed="false" data-key="p4-s2">✓</button>
+                            <div class="step-content" onclick="showPrompt('p4-s2')">
+                                <h4 class="step-title">Performance Analysis & Reporting</h4>
+                                <small class="step-description">Analyze campaign data and create performance dashboards</small>
+                            </div>
+                        </div>
+
+                        <div class="step-item" data-id="p4-s3">
+                            <button class="check-button" aria-pressed="false" data-key="p4-s3">✓</button>
+                            <div class="step-content" onclick="showPrompt('p4-s3')">
+                                <h4 class="step-title">Marketing Automation</h4>
+                                <small class="step-description">Implement workflows for lead scoring, segmentation, and personalization</small>
+                            </div>
+                        </div>
+
+                        <div class="step-item" data-id="p4-s4">
+                            <button class="check-button" aria-pressed="false" data-key="p4-s4">✓</button>
+                            <div class="step-content" onclick="showPrompt('p4-s4')">
+                                <h4 class="step-title">Customer Retention Strategies</h4>
+                                <small class="step-description">Develop programs to increase customer lifetime value and reduce churn</small>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Phase 5 -->
+                <article class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-badge badge-5">🚀</div>
+                        <div>
+                            <h3 class="phase-title">Phase 5 — Scaling & Expansion</h3>
+                            <p class="phase-description">Grow marketing impact and explore new opportunities</p>
+                        </div>
+                    </div>
+
+                    <div class="steps-container">
+                        <div class="step-item" data-id="p5-s1">
+                            <button class="check-button" aria-pressed="false" data-key="p5-s1">✓</button>
+                            <div class="step-content" onclick="showPrompt('p5-s1')">
+                                <h4 class="step-title">Scale Successful Channels</h4>
+                                <small class="step-description">Increase budget and optimize top-performing marketing initiatives</small>
+                            </div>
+                        </div>
+
+                        <div class="step-item" data-id="p5-s2">
+                            <button class="check-button" aria-pressed="false" data-key="p5-s2">✓</button>
+                            <div class="step-content" onclick="showPrompt('p5-s2')">
+                                <h4 class="step-title">Explore New Marketing Channels</h4>
+                                <small class="step-description">Test emerging platforms and innovative marketing approaches</small>
+                            </div>
+                        </div>
+
+                        <div class="step-item" data-id="p5-s3">
+                            <button class="check-button" aria-pressed="false" data-key="p5-s3">✓</button>
+                            <div class="step-content" onclick="showPrompt('p5-s3')">
+                                <h4 class="step-title">Marketing Technology Stack Expansion</h4>
+                                <small class="step-description">Evaluate and implement additional marketing tools for efficiency</small>
+                            </div>
+                        </div>
+
+                        <div class="step-item" data-id="p5-s4">
+                            <button class="check-button" aria-pressed="false" data-key="p5-s4">✓</button>
+                            <div class="step-content" onclick="showPrompt('p5-s4')">
+                                <h4 class="step-title">Team Development & Processes</h4>
+                                <small class="step-description">Build marketing team, establish workflows, and document processes</small>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <aside class="sidebar">
+            <div class="progress-stat">
+                <div>
+                    <small style="color:var(--muted); font-weight:600">Workflow Completion</small>
+                    <div class="progress-percent" id="percent">0%</div>
+                </div>
+                <div style="width:180px">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="bar" style="width:0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top:6px">
+                <small style="color:var(--muted); font-weight:600">Completed Marketing Tasks</small>
+                <div class="completed-count" id="completed">0 of 20</div>
+            </div>
+
+            <div class="insight-box">
+                <strong>Growth Insight</strong>
+                <div style="font-size:0.9rem; margin-top:8px">
+                    Businesses that implement a systematic marketing framework see 3-5x faster growth than those with ad-hoc approaches.
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <button class="action-button" id="exportBtn" style="background:linear-gradient(90deg,var(--accent-2),#00c2ff)">📋 Export Marketing Plan</button>
+                <button class="action-button" id="resetBtn" style="background:linear-gradient(90deg,var(--accent-4),#ff88a8); box-shadow:0 12px 30px rgba(244,63,94,0.2)">🔄 Reset Progress</button>
+                <div class="action-hint">Export your plan to share with team members or stakeholders</div>
+            </div>
+
+            <div class="tools-section">
+                <small style="color:var(--muted);font-weight:600;display:block;margin-bottom:10px">Essential Marketing Tools</small>
+                <div class="tools-grid">
+                    <div class="tool-item">Google Analytics</div>
+                    <div class="tool-item">Google Ads</div>
+                    <div class="tool-item">SEMrush</div>
+                    <div class="tool-item">Mailchimp</div>
+                    <div class="tool-item">HubSpot</div>
+                    <div class="tool-item">Canva</div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="resources-footer">
+            <div>
+                <strong>Digital Marketing Channels & Tactics</strong>
+                <div style="color:var(--muted);font-size:0.95rem;margin-top:6px">Focus on channels that align with your audience and business goals</div>
+            </div>
+
+            <div class="resources-list">
+                <div class="resource-pill">SEO</div>
+                <div class="resource-pill">PPC Advertising</div>
+                <div class="resource-pill">Content Marketing</div>
+                <div class="resource-pill">Email Marketing</div>
+                <div class="resource-pill">Social Media</div>
+                <div class="resource-pill">Influencer Marketing</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for detailed prompts -->
+    <div id="promptModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Marketing Step Execution Guide</h3>
+                <button class="close-modal" onclick="closeModal()">×</button>
+            </div>
+            <div id="modalContent">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Complete Marketing workflow prompt data for all phases
+        const promptData = {
+            // Phase 1 - Strategy & Foundation
+            'p1-s1': {
+                title: 'Define Business Goals & KPIs',
+                prompts: [
+                    'What specific business outcomes do you want to achieve?',
+                    'How will you measure marketing success?',
+                    'What are your revenue and growth targets?',
+                    'What timeframe are you working with?'
+                ],
+                executionSteps: [
+                    'Conduct stakeholder interviews to align on business objectives',
+                    'Set SMART goals (Specific, Measurable, Achievable, Relevant, Time-bound)',
+                    'Identify 3-5 primary KPIs that directly impact business outcomes',
+                    'Establish baseline metrics for current performance',
+                    'Create a measurement framework and reporting schedule',
+                    'Document goals and get organizational buy-in'
+                ],
+                expertTip: 'Align marketing goals with overall business objectives. A 20% increase in website traffic means nothing if it doesn\'t translate to business growth.',
+                timeEstimate: '2-3 hours',
+                deliverables: ['SMART goals document', 'KPI dashboard outline', 'Measurement framework']
+            },
+            'p1-s2': {
+                title: 'Create Buyer Personas',
+                prompts: [
+                    'Who are your ideal customers?',
+                    'What problems do they need solved?',
+                    'How do they make purchasing decisions?',
+                    'Where do they seek information?'
+                ],
+                executionSteps: [
+                    'Analyze existing customer data and CRM information',
+                    'Conduct customer interviews and surveys',
+                    'Identify common demographic and psychographic traits',
+                    'Map customer journey from awareness to purchase',
+                    'Document pain points, goals, and buying objections',
+                    'Create 2-3 detailed buyer persona profiles'
+                ],
+                expertTip: 'The most effective personas are based on real customer data, not assumptions. Interview at least 5-10 customers for accurate insights.',
+                timeEstimate: '3-5 hours',
+                deliverables: ['Buyer persona profiles', 'Customer journey map', 'Persona research summary']
+            },
+            'p1-s3': {
+                title: 'Competitive Analysis',
+                prompts: [
+                    'Who are your direct and indirect competitors?',
+                    'What marketing strategies are they using?',
+                    'Where are they succeeding and failing?',
+                    'What gaps can you exploit in the market?'
+                ],
+                executionSteps: [
+                    'Identify 5-7 key competitors in your space',
+                    'Analyze their website structure, content, and UX',
+                    'Review their social media presence and engagement',
+                    'Examine their SEO strategy and keyword targeting',
+                    'Assess their paid advertising approaches',
+                    'Identify strengths, weaknesses, and opportunities'
+                ],
+                expertTip: 'Focus on understanding why customers choose competitors over you, not just what tactics they\'re using.',
+                timeEstimate: '4-6 hours',
+                deliverables: ['Competitive analysis report', 'SWOT analysis', 'Opportunity identification']
+            },
+            'p1-s4': {
+                title: 'Channel Strategy & Budget',
+                prompts: [
+                    'Which marketing channels align with your audience?',
+                    'What budget is available for marketing activities?',
+                    'How will you allocate resources across channels?',
+                    'What testing approach will you use?'
+                ],
+                executionSteps: [
+                    'Evaluate channel options based on audience presence and business goals',
+                    'Determine budget allocation based on potential ROI',
+                    'Create a testing plan for new channels and tactics',
+                    'Establish benchmarks for channel performance',
+                    'Develop a 90-day channel activation calendar',
+                    'Set up tracking for multi-channel attribution'
+                ],
+                expertTip: 'Start with 2-3 core channels and master them before expanding. It\'s better to excel in a few channels than to be mediocre in many.',
+                timeEstimate: '2-4 hours',
+                deliverables: ['Channel strategy document', 'Budget allocation plan', '90-day activation calendar']
+            },
+
+            // Phase 2 - Digital Presence & Infrastructure
+            'p2-s1': {
+                title: 'Website & Landing Page Optimization',
+                prompts: [
+                    'Is your website effectively converting visitors?',
+                    'What is the user experience like across devices?',
+                    'Are your value propositions clear and compelling?',
+                    'How can you reduce friction in the conversion process?'
+                ],
+                executionSteps: [
+                    'Conduct a comprehensive website audit',
+                    'Analyze user behavior with heatmaps and session recordings',
+                    'Optimize page load speed and mobile responsiveness',
+                    'Simplify navigation and improve information architecture',
+                    'Create dedicated landing pages for key offers',
+                    'Implement clear calls-to-action and reduce form fields'
+                ],
+                expertTip: 'A 1-second delay in page load time can reduce conversions by 7%. Focus on speed and usability before aesthetics.',
+                timeEstimate: '5-8 hours',
+                deliverables: ['Website audit report', 'Optimization plan', 'Improved landing pages']
+            },
+            'p2-s2': {
+                title: 'SEO Foundation & Keyword Strategy',
+                prompts: [
+                    'What keywords are your potential customers searching for?',
+                    'How can you create content that ranks for these terms?',
+                    'What technical issues might prevent search visibility?',
+                    'How can you build authority in your industry?'
+                ],
+                executionSteps: [
+                    'Conduct comprehensive keyword research',
+                    'Analyze search intent and competition for target keywords',
+                    'Optimize title tags, meta descriptions, and header structure',
+                    'Improve internal linking and site structure',
+                    'Create content clusters around topic pillars',
+                    'Develop an ongoing content creation plan'
+                ],
+                expertTip: 'Focus on searcher intent, not just keyword volume. A handful of high-intent visitors are worth more than thousands of casual browsers.',
+                timeEstimate: '4-6 hours',
+                deliverables: ['Keyword strategy', 'SEO audit report', 'Content pillar plan']
+            },
+            'p2-s3': {
+                title: 'Analytics & Tracking Implementation',
+                prompts: [
+                    'What user actions indicate marketing success?',
+                    'How will you track cross-channel performance?',
+                    'What attribution model makes sense for your business?',
+                    'How will you report on marketing ROI?'
+                ],
+                executionSteps: [
+                    'Set up Google Analytics 4 with proper configuration',
+                    'Implement Google Tag Manager for flexible tracking',
+                    'Define and track key conversion events',
+                    'Set up goals and e-commerce tracking if applicable',
+                    'Create custom dashboards for key metrics',
+                    'Establish regular reporting cadence and distribution'
+                ],
+                expertTip: 'Track micro-conversions (newsletter signups, content downloads) alongside macro-conversions (purchases) to understand full customer journey.',
+                timeEstimate: '3-5 hours',
+                deliverables: ['Analytics implementation', 'Conversion tracking', 'Custom dashboards']
+            },
+            'p2-s4': {
+                title: 'Content Strategy & Calendar',
+                prompts: [
+                    'What content formats resonate with your audience?',
+                    'How can you repurpose content across channels?',
+                    'What topics establish your authority and expertise?',
+                    'How will you promote and distribute your content?'
+                ],
+                executionSteps: [
+                    'Define 3-5 content pillars aligned with audience interests',
+                    'Create an editorial calendar for 90 days',
+                    'Develop content templates and style guidelines',
+                    'Plan content distribution across owned, earned, and paid channels',
+                    'Set up content performance tracking',
+                    'Establish content creation workflow and approval process'
+                ],
+                expertTip: 'The 5-3-2 rule: For every 10 pieces of content, 5 should be curated, 3 should be original, and 2 should be personal to build connection.',
+                timeEstimate: '3-4 hours',
+                deliverables: ['Content strategy document', '90-day editorial calendar', 'Content distribution plan']
+            },
+
+            // Phase 3 - Acquisition & Activation
+            'p3-s1': {
+                title: 'Paid Advertising Campaigns',
+                prompts: [
+                    'Which platforms align with your target audience?',
+                    'What budget allocation makes sense for testing?',
+                    'How will you structure campaigns for optimal performance?',
+                    'What conversion tracking needs to be in place?'
+                ],
+                executionSteps: [
+                    'Set up Google Ads account with proper conversion tracking',
+                    'Create 2-3 initial campaigns with different targeting approaches',
+                    'Develop compelling ad copy and creative assets',
+                    'Implement retargeting campaigns for website visitors',
+                    'Set up A/B testing framework for ads and landing pages',
+                    'Monitor daily performance and adjust bids based on results'
+                ],
+                expertTip: 'Start with a learning budget of 10-20% of your total ad spend to test different audiences and creatives before scaling.',
+                timeEstimate: '6-8 hours',
+                deliverables: ['Active ad campaigns', 'Conversion tracking', 'Performance monitoring system']
+            },
+            'p3-s2': {
+                title: 'Content Marketing Execution',
+                prompts: [
+                    'What content formats will resonate most with your audience?',
+                    'How can you optimize content for both users and search engines?',
+                    'What distribution channels will maximize reach?',
+                    'How will you measure content effectiveness?'
+                ],
+                executionSteps: [
+                    'Create 3-5 pillar content pieces based on keyword research',
+                    'Develop supporting blog posts and articles',
+                    'Produce video content for YouTube and social platforms',
+                    'Optimize all content for SEO with proper meta tags and structure',
+                    'Implement content promotion strategy across channels',
+                    'Set up content performance tracking and analytics'
+                ],
+                expertTip: 'Repurpose one pillar piece into 8-10 smaller content assets to maximize ROI on content creation.',
+                timeEstimate: '8-12 hours',
+                deliverables: ['Published content assets', 'SEO optimization', 'Content promotion plan']
+            },
+            'p3-s3': {
+                title: 'Email Marketing & Lead Nurturing',
+                prompts: [
+                    'What lead magnets will attract your ideal customers?',
+                    'How will you segment your email list for personalization?',
+                    'What nurture sequences will guide prospects to conversion?',
+                    'How will you measure email marketing ROI?'
+                ],
+                executionSteps: [
+                    'Set up email marketing platform (Mailchimp, ConvertKit, etc.)',
+                    'Create valuable lead magnets for different audience segments',
+                    'Build automated welcome and nurture sequences',
+                    'Segment email list based on behavior and demographics',
+                    'Design mobile-responsive email templates',
+                    'Set up A/B testing for subject lines and content'
+                ],
+                expertTip: 'Personalized subject lines can increase open rates by 26%. Use dynamic content based on subscriber behavior and preferences.',
+                timeEstimate: '5-7 hours',
+                deliverables: ['Email marketing setup', 'Lead magnets', 'Automated sequences']
+            },
+            'p3-s4': {
+                title: 'Social Media Marketing',
+                prompts: [
+                    'Which social platforms does your target audience use most?',
+                    'What content mix will drive engagement and conversions?',
+                    'How will you integrate social media with other marketing efforts?',
+                    'What metrics indicate social media success?'
+                ],
+                executionSteps: [
+                    'Develop social media content calendar for 30 days',
+                    'Create platform-specific content strategies',
+                    'Set up social media management tools',
+                    'Implement social listening for brand mentions and trends',
+                    'Create engagement strategy for comments and messages',
+                    'Set up social media advertising for top-performing content'
+                ],
+                expertTip: 'Focus on 2-3 social platforms where your audience is most active rather than trying to maintain presence everywhere.',
+                timeEstimate: '4-6 hours',
+                deliverables: ['Social media strategy', 'Content calendar', 'Engagement plan']
+            },
+
+            // Phase 4 - Optimization & Conversion
+            'p4-s1': {
+                title: 'Conversion Rate Optimization',
+                prompts: [
+                    'What pages have the highest traffic but lowest conversion rates?',
+                    'What elements on your pages might be causing friction?',
+                    'How can you better align page content with visitor intent?',
+                    'What testing approach will yield the most insights?'
+                ],
+                executionSteps: [
+                    'Conduct heuristic analysis of key landing pages',
+                    'Set up heatmaps and session recording tools',
+                    'Create A/B testing plan for headlines, CTAs, and forms',
+                    'Implement multivariate testing for page layouts',
+                    'Analyze user flow through conversion funnels',
+                    'Document winning variations and implement site-wide'
+                ],
+                expertTip: 'Even small CRO improvements (5-10%) can double your marketing ROI when scaled across all traffic.',
+                timeEstimate: '6-8 hours',
+                deliverables: ['CRO testing plan', 'Optimized pages', 'Performance documentation']
+            },
+            'p4-s2': {
+                title: 'Performance Analysis & Reporting',
+                prompts: [
+                    'What metrics truly indicate marketing success?',
+                    'How can you attribute revenue to specific marketing efforts?',
+                    'What reporting frequency makes sense for stakeholders?',
+                    'How will you communicate insights and recommendations?'
+                ],
+                executionSteps: [
+                    'Set up comprehensive marketing dashboard',
+                    'Implement multi-touch attribution modeling',
+                    'Create automated reporting for key stakeholders',
+                    'Conduct weekly performance review meetings',
+                    'Document insights and optimization opportunities',
+                    'Adjust strategy based on performance data'
+                ],
+                expertTip: 'Focus on leading indicators (leads, engagement) rather than just lagging indicators (revenue) to make proactive adjustments.',
+                timeEstimate: '4-6 hours',
+                deliverables: ['Marketing dashboard', 'Attribution model', 'Reporting system']
+            },
+            'p4-s3': {
+                title: 'Marketing Automation',
+                prompts: [
+                    'What repetitive tasks can be automated to save time?',
+                    'How can you personalize customer journeys at scale?',
+                    'What triggers indicate when leads are sales-ready?',
+                    'How will automation integrate with your CRM?'
+                ],
+                executionSteps: [
+                    'Map customer journey from first touch to conversion',
+                    'Set up lead scoring based on engagement and demographics',
+                    'Create automated nurture sequences for different segments',
+                    'Implement behavioral triggers for personalized content',
+                    'Integrate marketing automation with CRM system',
+                    'Test and optimize automation workflows'
+                ],
+                expertTip: 'Companies that use marketing automation see 53% higher conversion rates from response to marketing qualified lead.',
+                timeEstimate: '5-7 hours',
+                deliverables: ['Automation workflows', 'Lead scoring system', 'CRM integration']
+            },
+            'p4-s4': {
+                title: 'Customer Retention Strategies',
+                prompts: [
+                    'What makes your best customers stay and refer others?',
+                    'How can you increase customer lifetime value?',
+                    'What early warning signs indicate customer churn?',
+                    'How will you turn customers into brand advocates?'
+                ],
+                executionSteps: [
+                    'Analyze customer retention data and identify patterns',
+                    'Create customer loyalty and referral programs',
+                    'Develop onboarding and education sequences',
+                    'Implement proactive customer success outreach',
+                    'Set up customer feedback collection system',
+                    'Create advocacy and testimonial programs'
+                ],
+                expertTip: 'Increasing customer retention by 5% can increase profits by 25-95%. Focus on existing customers as much as new acquisition.',
+                timeEstimate: '4-6 hours',
+                deliverables: ['Retention programs', 'Customer feedback system', 'Advocacy strategy']
+            },
+
+            // Phase 5 - Scaling & Expansion
+            'p5-s1': {
+                title: 'Scale Successful Channels',
+                prompts: [
+                    'Which marketing channels show the best ROI?',
+                    'What budget increases can these channels support?',
+                    'How can you optimize these channels for maximum scale?',
+                    'What team or tools do you need to manage increased volume?'
+                ],
+                executionSteps: [
+                    'Analyze channel performance and ROI data',
+                    'Develop scaling plan for top 2-3 performing channels',
+                    'Increase budget allocation based on performance thresholds',
+                    'Optimize campaigns for volume while maintaining efficiency',
+                    'Implement advanced tracking for scaled campaigns',
+                    'Set up alerts for performance degradation'
+                ],
+                expertTip: 'When scaling, maintain the same rigorous testing mindset that made the channel successful in the first place.',
+                timeEstimate: '5-7 hours',
+                deliverables: ['Channel scaling plan', 'Budget allocation', 'Performance monitoring']
+            },
+            'p5-s2': {
+                title: 'Explore New Marketing Channels',
+                prompts: [
+                    'What emerging channels align with your audience?',
+                    'How can you test new channels with minimal risk?',
+                    'What resources are needed for channel exploration?',
+                    'How will you measure success in new channels?'
+                ],
+                executionSteps: [
+                    'Research emerging platforms and marketing trends',
+                    'Allocate 10-15% of budget for testing new channels',
+                    'Create hypothesis-driven testing framework',
+                    'Set up proper tracking and measurement for tests',
+                    'Document learnings and success criteria',
+                    'Scale successful tests or pivot based on results'
+                ],
+                expertTip: 'The early adopters of new marketing channels often achieve 3-5x better results than those who wait until channels mature.',
+                timeEstimate: '4-6 hours',
+                deliverables: ['New channel testing plan', 'Testing budget', 'Learning documentation']
+            },
+            'p5-s3': {
+                title: 'Marketing Technology Stack Expansion',
+                prompts: [
+                    'What manual processes can be automated with technology?',
+                    'How will new tools integrate with existing systems?',
+                    'What ROI do you expect from technology investments?',
+                    'How will you manage tool adoption across the team?'
+                ],
+                executionSteps: [
+                    'Audit current marketing technology stack and gaps',
+                    'Research and evaluate potential new tools',
+                    'Create business case for technology investments',
+                    'Implement selected tools with proper training',
+                    'Set up integrations between marketing systems',
+                    'Monitor tool usage and ROI'
+                ],
+                expertTip: 'The average company uses 91 marketing cloud services. Focus on integration and workflow efficiency rather than tool quantity.',
+                timeEstimate: '6-8 hours',
+                deliverables: ['Technology audit', 'Tool implementation plan', 'Integration strategy']
+            },
+            'p5-s4': {
+                title: 'Team Development & Processes',
+                prompts: [
+                    'What skills are needed to support marketing growth?',
+                    'How can you document processes for consistency?',
+                    'What team structure will support scaling efforts?',
+                    'How will you measure team performance and development?'
+                ],
+                executionSteps: [
+                    'Assess current team skills and identify gaps',
+                    'Create hiring plan for key roles and responsibilities',
+                    'Document standard operating procedures for all processes',
+                    'Implement project management and collaboration tools',
+                    'Create training and development programs',
+                    'Establish performance metrics and review processes'
+                ],
+                expertTip: 'Companies with documented marketing processes achieve 38% higher marketing effectiveness and 27% higher profitability.',
+                timeEstimate: '5-7 hours',
+                deliverables: ['Team development plan', 'Process documentation', 'Performance metrics']
+            }
+        };
+
+        // Modal functionality
+        function showPrompt(stepId) {
+            const data = promptData[stepId];
+            if (!data) {
+                // For steps without specific data, show a generic template
+                const stepElement = document.querySelector(`[data-id="${stepId}"]`);
+                const title = stepElement.querySelector('.step-title').textContent;
+                
+                document.getElementById('modalTitle').textContent = title;
+                document.getElementById('modalContent').innerHTML = `
+                    <div class="prompt-section">
+                        <h4>Implementation Guide</h4>
+                        <p>Detailed implementation guide for this step is being developed.</p>
+                        <p>Focus on executing this step systematically and document your progress.</p>
+                    </div>
+                    
+                    <div class="action-prompt">
+                        <strong>Pro Tip:</strong> Break down complex marketing tasks into smaller, manageable actions with clear deliverables.
+                    </div>
+                `;
+            } else {
+                document.getElementById('modalTitle').textContent = data.title;
+                
+                let content = `
+                    <div class="prompt-section">
+                        <h4>Key Questions to Answer</h4>
+                        <ul>
+                            ${data.prompts.map(prompt => `<li>${prompt}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="execution-steps">
+                        <h4>Step-by-Step Execution</h4>
+                        <ol>
+                            ${data.executionSteps.map(step => `<li>${step}</li>`).join('')}
+                        </ol>
+                    </div>
+                    
+                    <div class="action-prompt">
+                        <strong>Expert Tip:</strong> ${data.expertTip}
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; margin-top: 20px; font-size: 0.9rem;">
+                        <div><strong>Time Estimate:</strong> ${data.timeEstimate}</div>
+                        <div><strong>Deliverables:</strong> ${data.deliverables.join(', ')}</div>
+                    </div>
+                `;
+                
+                document.getElementById('modalContent').innerHTML = content;
+            }
+            
+            document.getElementById('promptModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('promptModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('promptModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Progress tracking functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Collect all check buttons
+            const checks = Array.from(document.querySelectorAll('.check-button'));
+            const storageKey = 'dm-checks-v1';
+
+            // Load saved state
+            function loadState(){
+                try{
+                    const raw = localStorage.getItem(storageKey);
+                    if(!raw) return {};
+                    return JSON.parse(raw);
+                }catch(e){ return {} }
+            }
+            
+            function saveState(state){
+                try{ localStorage.setItem(storageKey, JSON.stringify(state)) }catch(e){}
+            }
+
+            const state = loadState();
+
+            // Update UI & stats
+            function updateUI(){
+                const checked = checks.filter(b => b.classList.contains('checked')).length;
+                const total = checks.length;
+                const pct = total > 0 ? Math.round((checked/total)*100) : 0;
+                document.getElementById('percent').textContent = pct + '%';
+                document.getElementById('bar').style.width = pct + '%';
+                document.getElementById('completed').textContent = checked + ' of ' + total;
+            }
+
+            // Initialize checks from state
+            checks.forEach(btn => {
+                const key = btn.dataset.key;
+                if(state[key]) {
+                    btn.classList.add('checked');
+                    btn.setAttribute('aria-pressed', 'true');
+                } else {
+                    btn.classList.remove('checked');
+                    btn.setAttribute('aria-pressed', 'false');
+                }
+            });
+
+            updateUI();
+
+            // Click handler for check buttons - FIXED VERSION
+            checks.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent triggering the step click event
+                    const key = this.dataset.key;
+                    const isChecked = this.classList.toggle('checked');
+                    
+                    this.setAttribute('aria-pressed', isChecked.toString());
+                    state[key] = isChecked;
+                    saveState(state);
+                    updateUI();
+                });
+            });
+
+            // Reset progress
+            document.getElementById('resetBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                if(!confirm('Are you sure you want to reset ALL progress? This cannot be undone.')) return;
+                
+                checks.forEach(btn => {
+                    btn.classList.remove('checked');
+                    btn.setAttribute('aria-pressed', 'false');
+                });
+                
+                // Clear all state
+                Object.keys(state).forEach(key => {
+                    state[key] = false;
+                });
+                
+                saveState(state);
+                updateUI();
+            });
+
+            // Export strategy
+            document.getElementById('exportBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                const checklistTitle = "--- Digital Marketing Growth Plan ---\n";
+                const completed = [];
+                document.querySelectorAll('.phase-card').forEach(phaseEl => {
+                    const phaseTitle = "\n\n-- " + phaseEl.querySelector('.phase-title').textContent.trim() + " --";
+                    completed.push(phaseTitle);
+                    phaseEl.querySelectorAll('.step-item').forEach(stepEl => {
+                        const isChecked = stepEl.querySelector('.check-button').classList.contains('checked');
+                        const icon = isChecked ? '✅' : '⬜';
+                        const title = stepEl.querySelector('.step-title').textContent.trim();
+                        const description = stepEl.querySelector('.step-description').textContent.trim();
+                        completed.push(icon + ' ' + title + ' (' + description + ')');
+                    });
+                });
+
+                const text = checklistTitle + completed.join('\n');
+                
+                // Try to copy to clipboard
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(text).then(() => {
+                        alert('Marketing plan copied to clipboard!');
+                    }).catch(err => {
+                        console.error('Failed to copy: ', err);
+                        fallbackCopyTextToClipboard(text);
+                    });
+                } else {
+                    fallbackCopyTextToClipboard(text);
+                }
+                
+                function fallbackCopyTextToClipboard(text) {
+                    const textArea = document.createElement("textarea");
+                    textArea.value = text;
+                    textArea.style.position = "fixed";
+                    textArea.style.opacity = "0";
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    
+                    try {
+                        document.execCommand('copy');
+                        alert('Marketing plan copied to clipboard!');
+                    } catch (err) {
+                        console.error('Fallback: Oops, unable to copy', err);
+                        // Fallback: open a new window with the text
+                        const w = window.open('', '_blank', 'width=700,height=700');
+                        w.document.body.style.whiteSpace = 'pre-wrap';
+                        w.document.body.style.fontFamily = 'monospace';
+                        w.document.body.textContent = text;
+                    }
+                    
+                    document.body.removeChild(textArea);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
