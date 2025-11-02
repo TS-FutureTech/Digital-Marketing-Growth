@@ -377,6 +377,61 @@
             font-size: 0.85rem;
         }
 
+        /* Contact Section */
+        .contact-section {
+            margin-top: 20px;
+            border-top: 1px solid rgba(10,20,40,0.05);
+            padding-top: 16px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            background: white;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .contact-item:hover {
+            background: #f5f8ff;
+            border-color: rgba(37,99,235,0.1);
+            transform: translateY(-1px);
+        }
+
+        .contact-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--accent-2), var(--accent-3));
+            color: white;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .contact-details {
+            flex: 1;
+        }
+
+        .contact-platform {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--accent-2);
+        }
+
+        .contact-info {
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
         /* Resources Footer */
         .resources-footer {
             grid-column: 1 / -1;
@@ -802,6 +857,46 @@
                     <div class="tool-item">HubSpot</div>
                     <div class="tool-item">Canva</div>
                 </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="contact-section">
+                <small style="color:var(--muted);font-weight:600;display:block;margin-bottom:10px">Need Professional Help?</small>
+                <div style="font-size:0.85rem; color: var(--muted); margin-bottom: 12px;">
+                    Get expert guidance for your digital marketing strategy implementation
+                </div>
+                
+                <a href="https://www.fiverr.com/s/xX2q0L1" target="_blank" class="contact-item">
+                    <div class="contact-icon">F</div>
+                    <div class="contact-details">
+                        <div class="contact-platform">Fiverr Profile</div>
+                        <div class="contact-info">Digital Marketing Consultant</div>
+                    </div>
+                </a>
+                
+                <a href="https://www.upwork.com/freelancers/~01e5fb00776386fd80" target="_blank" class="contact-item">
+                    <div class="contact-icon">U</div>
+                    <div class="contact-details">
+                        <div class="contact-platform">Upwork Profile</div>
+                        <div class="contact-info">Marketing Strategy Expert</div>
+                    </div>
+                </a>
+                
+                <a href="mailto:shairali123@gmail.com" class="contact-item">
+                    <div class="contact-icon">✉</div>
+                    <div class="contact-details">
+                        <div class="contact-platform">Email</div>
+                        <div class="contact-info">shairali123@gmail.com</div>
+                    </div>
+                </a>
+                
+                <a href="https://wa.me/923453335391" target="_blank" class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-details">
+                        <div class="contact-platform">WhatsApp</div>
+                        <div class="contact-info">+92 345 3335391</div>
+                    </div>
+                </a>
             </div>
         </aside>
 
